@@ -1,5 +1,30 @@
+<script lang="ts" setup>
+import { useRerender } from '@/modules/render-vue'
+import { onMounted } from 'vue'
+
+const [scale, setScale] = useRerender(0.8)
+const [opacity, setOpacity] = useRerender(0)
+onMounted(() => {
+  const id = setTimeout(() => {
+    setScale(1)
+    setOpacity(1)
+  }, 100)
+
+  return () => clearTimeout(id)
+})
+</script>
+
 <template>
-  <section class="about-section" id="about">
+  <section
+    class="about-section anim"
+    id="about"
+    :style="{
+      opacity: `${opacity} !important`,
+      transform: `scale(${scale})`,
+      transition: 'opacity 1s ease, transform 1s ease !important',
+      willChange: 'transform',
+    }"
+  >
     <div class="about-cnt">
       <div class="about-info">
         <h1 class="greetings">Hi!</h1>

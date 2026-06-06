@@ -15,7 +15,11 @@ const handleSkillToggle = (key: number, state: boolean) => {
 </script>
 
 <template>
-  <section class="skill-section" id="skill">
+  <section
+    class="skill-section"
+    id="skill"
+    :style="{ opacity: '0', transition: 'opacity 9s ease, transform .5s ease' }"
+  >
     <div class="header">
       <h1>Skills</h1>
       <p>Know what i'm good at</p>

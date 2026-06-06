@@ -12,10 +12,12 @@ export const scrollEnd = () => {
 
 const hadnleElement = (e: IntersectionObserverEntry[]) => {
   const deviceWidth = window.screen.width
-  if (deviceWidth > 920) {
+  if (deviceWidth > 800) {
     const obj = e[0]?.target as HTMLElement
     obj.style.opacity = '0'
-    obj.style.transition = 'opacity .4s ease'
+    obj.style.transform = 'scale(.9)'
+    obj.style.transition = 'opacity 1s ease, transform 1s ease'
+    obj.style.transform = 'scale(1)'
 
     if (e[0]?.isIntersecting) {
       requestAnimationFrame(() => {
@@ -24,11 +26,12 @@ const hadnleElement = (e: IntersectionObserverEntry[]) => {
       })
     } else {
       obj.style.opacity = '0'
+      obj.style.transform = 'scale(.9)'
     }
   }
 }
 
-const observer1 = new IntersectionObserver((e) => hadnleElement(e), { threshold: 0.01 })
+const observer1 = new IntersectionObserver((e) => hadnleElement(e), { threshold: 0 })
 
 export const handleObserve = () => {
   const obj = document.getElementById('skill')
@@ -42,29 +45,4 @@ export const handleObserve = () => {
   observer1.observe(review as Element)
   observer1.observe(about as Element)
   observer1.observe(comment as Element)
-}
-
-const observer2 = new IntersectionObserver(
-  (e) => {
-    const obj = e[0]?.target as HTMLElement
-    obj.style.opacity = '0'
-    obj.style.transition = 'opacity .4s ease'
-
-    if (e[0]?.isIntersecting) {
-      requestAnimationFrame(() => {
-        obj.style.opacity = '1'
-        obj.scrollIntoView(true)
-      })
-    } else {
-      obj.style.opacity = '0'
-    }
-  },
-  { threshold: 0.01 },
-)
-
-export const horizontalScroll = () => {
-  const elements = document.querySelectorAll('.card')
-  elements.forEach((element) => {
-    observer2.observe(element)
-  })
 }
