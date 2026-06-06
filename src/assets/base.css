@@ -1,0 +1,128 @@
+:root {
+  --bg-gen-cl: rgb(255, 255, 255);
+  --bg-gen-cl-a: rgb(255, 255, 255);
+
+  --bg-cl: linear-gradient(to right, transparent 5%, rgb(203, 203, 203) 6% 9%, transparent 10%);
+  --bg-cl-a: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 5%,
+    rgb(230, 230, 230) 6% 7%,
+    rgba(0, 0, 0, 0) 8%
+  );
+  --global-txt-cl: black;
+  --global-border: 1px solid rgba(0, 136, 255, 0.802);
+  --skill-grid-column: 1fr 1fr;
+  --global-component-bg: rgb(235, 234, 234);
+  --global-section-component-bg: rgb(226, 226, 226);
+}
+
+body.dark {
+  --bg-gen-cl: black;
+  --bg-gen-cl-a: black;
+  --bg-cl: linear-gradient(to right, black 5%, rgb(16, 16, 16) 6% 9%, black 10%);
+  --bg-cl-a: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 5%,
+    rgb(16, 16, 16) 6% 7%,
+    rgba(0, 0, 0, 0) 8%
+  );
+  --global-txt-cl: white;
+  --global-component-bg: rgb(25, 25, 25);
+  --global-section-component-bg: rgb(20, 20, 20);
+}
+
+body.light {
+  --bg-gen-cl: rgb(255, 255, 255);
+  --bg-gen-cl-a: rgb(255, 255, 255);
+
+  --bg-cl: linear-gradient(to right, transparent 5%, rgb(203, 203, 203) 6% 9%, transparent 10%);
+  --bg-cl-a: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 5%,
+    rgb(230, 230, 230) 6% 7%,
+    rgba(0, 0, 0, 0) 8%
+  );
+  --global-txt-cl: black;
+  --global-border: 1px solid rgba(0, 136, 255, 0.802);
+  --skill-grid-column: 1fr 1fr;
+  --global-component-bg: rgb(235, 234, 234);
+  --global-section-component-bg: rgb(226, 226, 226);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-cl: linear-gradient(to right, black 5%, rgb(16, 16, 16) 6% 9%, black 10%);
+    --bg-cl-a: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 5%,
+      rgb(16, 16, 16) 6% 7%,
+      rgba(0, 0, 0, 0) 8%
+    );
+    --bg-gen-cl: black;
+    --global-txt-cl: white;
+    --global-component-bg: rgb(25, 25, 25);
+    --global-section-component-bg: rgb(20, 20, 20);
+    --bg-gen-cl-a: black;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+*::-webkit-scrollbar {
+  display: flex;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(3, 133, 203, 0.287);
+  border: var(--global-border);
+  border-radius: 1rem;
+}
+
+@media (max-width: 600px) {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body {
+  min-height: 100vh;
+  height: 100vh;
+  color: var(--color-text);
+  background: var(--bg-gen-cl);
+
+  inset: 0;
+  overflow: hidden;
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
+}
