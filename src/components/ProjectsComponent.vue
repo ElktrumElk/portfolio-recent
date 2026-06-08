@@ -7,7 +7,7 @@ const projects = [
       'Front Devs is a web application where front-end developers and graphic designers can show case there work and make connections.',
     repoLink: 'https://github.com/ElktrumElk/front-devs',
     previewLink: 'https://front-devs.vercel.app',
-    imgLinke: '...',
+    imgLinke: '/front-devs.jpeg',
   },
   {
     id: 2,
@@ -16,7 +16,7 @@ const projects = [
       'A church Application where sunday serveice and any other teaching videos can be uploaded.',
     repoLink: 'https://github.com/ElktrumElk/gcbc-app',
     previewLink: 'https://gcbc-app.vercel.app',
-    imgLinke: '/gcbc_light.png',
+    imgLinke: '/gcbc.png',
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ const projects = [
       'A management app that helps your mange your business by keeping track of your POS',
     repoLink: 'https://github.com/favmaclegend-opps/MerchantCore',
     previewLink: 'https://MerchantCore.vercel.app',
-    imgLinke: '...',
+    imgLinke: '/merchant-core.jpeg',
   },
   {
     id: 4,
