@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { activePage, isBoxShadow, setActivePage } from '@/context/general'
-import { useRerender } from '@/modules/render-vue'
-
+import {
+  activePage,
+  isBoxShadow,
+  isDarkMode,
+  isMenu,
+  setActivePage,
+  setMenu,
+  toggleColorMode,
+} from '@/context/general'
 import { RouterLink } from 'vue-router'
-
-const [isDarkMode, setDarkMode] = useRerender<boolean>(
-  window.matchMedia('prefer-color-scheme: dark').matches,
-)
-
-const toggleColorMode = () => {
-  setDarkMode(!isDarkMode.value)
-  if (isDarkMode.value) {
-    document.body.classList.add('light')
-    document.body.classList.remove('dark')
-  } else {
-    document.body.classList.add('dark')
-    document.body.classList.remove('light')
-  }
-  console.log(isDarkMode.value)
-}
 </script>
 
 <template>
@@ -62,6 +52,10 @@ const toggleColorMode = () => {
     <div class="cl-md-btn-cnt">
       <button class="cl-md-btn" @click="() => toggleColorMode()">
         <span>{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
+      </button>
+
+      <button class="menu-btn click" @click="() => setMenu(!isMenu)">
+        <span>{{ isMenu ? 'Close' : 'Menu' }}</span>
       </button>
     </div>
   </header>
@@ -132,6 +126,20 @@ const toggleColorMode = () => {
   color: var(--global-txt-cl);
 }
 
+.menu-btn {
+  display: none;
+  background: none;
+  border: var(--global-border);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-btn span {
+  color: var(--global-txt-cl);
+}
+
 @media (max-width: 600px) {
   .nav-cnt {
     display: none;
@@ -142,6 +150,9 @@ const toggleColorMode = () => {
   }
   .header {
     box-shadow: none !important;
+  }
+  .menu-btn {
+    display: flex;
   }
 }
 </style>

@@ -35,6 +35,8 @@
   width: 100%;
   max-width: 1500px;
   align-self: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .header {

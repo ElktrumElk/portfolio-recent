@@ -18,6 +18,8 @@ footer {
   gap: 3rem;
   padding-bottom: 5rem;
   max-width: 1500px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 footer > div {

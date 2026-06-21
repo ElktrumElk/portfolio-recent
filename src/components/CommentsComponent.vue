@@ -47,6 +47,8 @@ import { comments } from '@/data/comments'
   min-height: 100% !important;
   justify-content: center;
   flex: 0 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .header {

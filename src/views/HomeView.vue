@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import AboutComponent from '@/components/AboutComponent.vue'
+import WelcomeComponent from '@/components/WelcomeComponent.vue'
 import CommentsComponent from '@/components/CommentsComponent.vue'
 import ContactComponent from '@/components/ContactComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
 import LeaveReview from '@/components/LeaveReview.vue'
 import ProjectsComponent from '@/components/ProjectsComponent.vue'
 import SkillsComponet from '@/components/SkillsComponet.vue'
-import { handleObserve, scrollEnd, scrollStart, setActivePage } from '@/context/general'
+import { scrollEnd, scrollStart, setActivePage } from '@/context/general'
 import { onMounted } from 'vue'
 
 onMounted(() => {
@@ -21,11 +22,11 @@ onMounted(() => {
     @scroll="
       () => {
         scrollStart()
-        handleObserve()
       }
     "
     @scrollend="() => scrollEnd()"
   >
+    <WelcomeComponent />
     <AboutComponent />
     <SkillsComponet />
     <ProjectsComponent />
@@ -49,7 +50,7 @@ onMounted(() => {
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
-  scroll-snap-type: 50% 50%;
+  scroll-snap-type: y mandatory;
 }
 @media (max-width: 600px) {
   .home {

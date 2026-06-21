@@ -3,7 +3,7 @@ import { contact } from '@/data/conatcts'
 </script>
 
 <template>
-  <section class="contact-section">
+  <section class="contact-section" id="contact">
     <div class="header">
       <h1>Contacts</h1>
     </div>
@@ -60,6 +60,10 @@ import { contact } from '@/data/conatcts'
   width: 100%;
   max-width: 1500px;
   align-self: center;
+  min-height: 100%;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .header {

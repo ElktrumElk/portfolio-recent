@@ -3,6 +3,7 @@ import { useRerender } from '@/modules/render-vue'
 
 const [isSubSkillDisplay, setSkillDisplay] = useRerender<number>(0)
 const [isDisplay, setDisplay] = useRerender<boolean>(false)
+const [scale, setScale] = useRerender(0)
 
 const handleDispla = (key: number) => {
   setSkillDisplay(key)
@@ -10,16 +11,24 @@ const handleDispla = (key: number) => {
 
 const handleSkillToggle = (key: number, state: boolean) => {
   setDisplay(!state)
-  handleDispla(isDisplay ? key : 0)
+  handleDispla(isDisplay.value ? key : 0)
+  if (isDisplay.value) {
+    const id = setTimeout(() => {
+      setScale(1)
+    }, 10)
+    return () => clearTimeout(id)
+  } else {
+    const id = setTimeout(() => {
+      setScale(0)
+    }, 100)
+    console.log('yes')
+    return () => clearTimeout(id)
+  }
 }
 </script>
 
 <template>
-  <section
-    class="skill-section"
-    id="skill"
-    :style="{ opacity: '0', transition: 'opacity 9s ease, transform .5s ease' }"
-  >
+  <section class="skill-section" id="skill">
     <div class="header">
       <h1>Skills</h1>
       <p>Know what i'm good at</p>
@@ -57,7 +66,11 @@ const handleSkillToggle = (key: number, state: boolean) => {
               <span>></span>
             </div>
 
-            <div class="frame-work l-cnt" v-if="isSubSkillDisplay === 1 && isDisplay">
+            <div
+              class="frame-work l-cnt"
+              v-if="isSubSkillDisplay === 1 && isDisplay"
+              :style="{ transform: `scale(${scale})`, transition: 'transform .2s ease !important' }"
+            >
               <strong>React</strong>
               <strong>Vue</strong>
             </div>
@@ -75,7 +88,11 @@ const handleSkillToggle = (key: number, state: boolean) => {
               <span>></span>
             </div>
 
-            <div class="version-cnt l-cnt" v-if="isSubSkillDisplay === 2 && isDisplay">
+            <div
+              class="version-cnt l-cnt"
+              v-if="isSubSkillDisplay === 2 && isDisplay"
+              :style="{ transform: `scale(${scale})`, transition: 'transform .2s ease !important' }"
+            >
               <strong>Git</strong>
               <strong>Github</strong>
             </div>
@@ -93,7 +110,11 @@ const handleSkillToggle = (key: number, state: boolean) => {
               <span>></span>
             </div>
 
-            <div class="css l-cnt" v-if="isSubSkillDisplay === 3 && isDisplay">
+            <div
+              class="css l-cnt"
+              v-if="isSubSkillDisplay === 3 && isDisplay"
+              :style="{ transform: `scale(${scale})`, transition: 'transform .2s ease !important' }"
+            >
               <span>SCSS</span>
               <span>Tailwind</span>
             </div>
@@ -161,6 +182,9 @@ const handleSkillToggle = (key: number, state: boolean) => {
   min-height: 100% !important;
   color: #6dbdfbde;
   justify-content: center;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .skill-section .header {
@@ -255,6 +279,9 @@ ul li {
 @media (max-width: 600px) {
   .skill-cnt {
     grid-template-columns: 1fr;
+  }
+  .skill-section {
+    padding-block-start: 9rem;
   }
 }
 </style>

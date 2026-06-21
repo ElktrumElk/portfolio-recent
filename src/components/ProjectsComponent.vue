@@ -81,6 +81,8 @@ const projects = [
   height: auto;
   flex: 0 0 auto;
   padding-top: 10rem;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .proj-section .header {
