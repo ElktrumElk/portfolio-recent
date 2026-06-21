@@ -4,6 +4,7 @@ import WelcomeComponent from '@/components/WelcomeComponent.vue'
 import CommentsComponent from '@/components/CommentsComponent.vue'
 import ContactComponent from '@/components/ContactComponent.vue'
 import FooterComponent from '@/components/FooterComponent.vue'
+import GithubStatsComponent from '@/components/GithubStatsComponent.vue'
 import LeaveReview from '@/components/LeaveReview.vue'
 import ProjectsComponent from '@/components/ProjectsComponent.vue'
 import SkillsComponet from '@/components/SkillsComponet.vue'
@@ -29,6 +30,7 @@ onMounted(() => {
     <WelcomeComponent />
     <AboutComponent />
     <SkillsComponet />
+    <GithubStatsComponent />
     <ProjectsComponent />
     <CommentsComponent />
     <ContactComponent />
