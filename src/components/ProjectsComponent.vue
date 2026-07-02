@@ -8,8 +8,9 @@ const projects = [
     repoLink: 'https://github.com/ElktrumElk/front-devs',
     previewLink: 'https://front-devs.vercel.app',
     imgLinke: '/front-devs.jpeg',
-    tags: ['Vue', 'TypeScript', 'Firebase'],
+    tags: ['React', 'TypeScript', 'MongoDB'],
   },
+
   {
     id: 2,
     name: 'GCBC App',
@@ -18,7 +19,7 @@ const projects = [
     repoLink: 'https://github.com/ElktrumElk/gcbc-app',
     previewLink: 'https://gcbc-app.vercel.app',
     imgLinke: '/gcbc.png',
-    tags: ['React', 'Node.js', 'MongoDB'],
+    tags: ['Vue', 'TypeScript'],
   },
   {
     id: 3,
@@ -28,7 +29,7 @@ const projects = [
     repoLink: 'https://github.com/favmaclegend-opps/MerchantCore',
     previewLink: 'https://MerchantCore.vercel.app',
     imgLinke: '/merchant-core.jpeg',
-    tags: ['Next.js', 'PostgreSQL', 'Prisma'],
+    tags: ['TypeScript', 'React', 'MySQL'],
   },
   {
     id: 4,
@@ -38,7 +39,7 @@ const projects = [
     repoLink: 'https://github.com/ElktrumElk/easy-rms-react',
     previewLink: 'https://front-devs.vercel.app',
     imgLinke: '',
-    tags: ['React', 'Django', 'PostgreSQL'],
+    tags: ['React', 'TypeScript'],
   },
   {
     id: 5,
