@@ -59,11 +59,22 @@ form {
   flex-direction: column;
   padding: 1rem;
   background: var(--global-component-bg);
+  border: 1px solid rgba(102, 126, 234, 0);
+  box-shadow: 0 0px 0px rgba(102, 126, 234, 0.12);
+  transform: translateY(0);
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
   border-radius: 1rem;
   max-width: 700px;
   align-self: center;
 }
 
+form:hover {
+  border: 1px solid rgba(102, 126, 234, 0.323);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+  transform: translateY(-3%);
+}
 form > div {
   display: flex;
   flex-direction: column;
@@ -122,7 +133,7 @@ form > div {
 
 .bottom-grid button {
   padding: 0.5rem 4rem;
-  background: rgba(0, 145, 255, 0.624);
+  background: linear-gradient(19deg, #667eea, #3149b6);
   border: var(--global-border);
   border-radius: 1rem;
   color: var(--global-txt-cl);
