@@ -60,7 +60,10 @@ import { comments } from '@/data/comments'
 }
 
 .header h1 {
-  color: var(--global-txt-cl);
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header p {
@@ -124,6 +127,13 @@ import { comments } from '@/data/comments'
   max-width: 30rem;
 }
 
+.card:hover {
+  border: 1px solid;
+  border-color: rgba(102, 126, 234, 0.648);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+}
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -143,6 +153,10 @@ import { comments } from '@/data/comments'
   color: var(--global-txt-cl);
   font-size: 1.2rem;
   line-height: 1.2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .info p {
