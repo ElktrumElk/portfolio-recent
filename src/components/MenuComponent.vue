@@ -36,7 +36,15 @@ onMounted(() => {
     </nav>
     <div class="tg-btn-cnt">
       <button class="tg-mode-btn" @click="() => toggleColorMode()">
-        <span>{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
+        <img
+          :src="
+            !isDarkMode
+              ? 'https://img.icons8.com/?size=100&id=9313&format=png&color=7a7a7a'
+              : 'https://img.icons8.com/?size=100&id=45475&format=png&color=7a7a7a'
+          "
+          width="30"
+          height="30"
+        />
       </button>
     </div>
   </menu>
@@ -84,7 +92,7 @@ onMounted(() => {
 
 .tg-mode-btn {
   background: none;
-  border: var(--global-border);
+  border: none;
   border-radius: 1rem;
   padding: 0.2rem 1rem;
   color: var(--global-txt-cl);

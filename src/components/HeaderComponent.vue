@@ -51,6 +51,15 @@ import { RouterLink } from 'vue-router'
 
     <div class="cl-md-btn-cnt">
       <button class="cl-md-btn" @click="() => toggleColorMode()">
+        <img
+          :src="
+            !isDarkMode
+              ? 'https://img.icons8.com/?size=100&id=9313&format=png&color=7a7a7a'
+              : 'https://img.icons8.com/?size=100&id=45475&format=png&color=7a7a7a'
+          "
+          width="30"
+          height="30"
+        />
         <span>{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
       </button>
 
@@ -62,9 +71,11 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style lang="css" scoped>
+
 .header {
   display: flex;
-  width: 100%;
+  width: 90%;
+  border-radius: 4rem;
   padding: 1rem;
   justify-content: space-between;
   align-items: center;
@@ -118,9 +129,12 @@ import { RouterLink } from 'vue-router'
 
 .cl-md-btn {
   background: none;
-  border: var(--global-border);
+  border: none;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
 }
 .cl-md-btn span {
   color: var(--global-txt-cl);

@@ -242,6 +242,10 @@ const handleSkillToggle = (key: number, state: boolean) => {
 .soft-skills h1 {
   color: var(--global-txt-cl);
   font-size: 150%;
+  background: linear-gradient(#1f9af8de 80%, #351e4c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 ul {

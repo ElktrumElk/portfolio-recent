@@ -36,6 +36,14 @@ const projects = [
     previewLink: 'https://front-devs.vercel.app',
     imgLinke: '...',
   },
+  {
+    id: 5,
+    name: 'Reminder',
+    description: 'An application that help you remind of the task you need to complete',
+    repoLink: 'https://github.com/ElktrumElk/Reminder',
+    previewLink: 'https://front-devs.vercel.app',
+    imgLinke: '...',
+  },
 ]
 </script>
 
@@ -73,7 +81,7 @@ const projects = [
   flex-direction: column;
   align-items: center;
   gap: 3rem;
-  width: 100%;
+  width: 95%;
   max-width: 1500px;
   align-self: center;
   min-height: 100dvh;
