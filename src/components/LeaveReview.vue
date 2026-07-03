@@ -1,25 +1,48 @@
+<script setup lang="ts">
+import { leaveReview } from '@/network/postReview'
+import { ref } from 'vue'
+
+const name = ref('')
+const email = ref('')
+const content = ref('')
+
+const handleReviewSubmint = (e: SubmitEvent) => {
+  e.preventDefault()
+
+  leaveReview({
+    username: name.value,
+    email: email.value,
+    content: content.value,
+  })
+  
+  name.value = ''
+  email.value = ''
+  content.value = ''
+}
+</script>
+
 <template>
   <section class="leave-review" id="review">
     <div class="header">
       <h1>Review</h1>
       <p>Leave a review</p>
     </div>
-    <form>
+    <form v-on:submit="(e) => handleReviewSubmint(e)">
       <div>
         <div class="top-grid">
           <div>
             <label for="name">Name</label>
-            <input id="name" placeholder="Enter name" required type="text" />
+            <input id="name" placeholder="Enter name" required type="text" v-model="name" />
           </div>
 
           <div>
             <label for="email">Email</label>
-            <input id="email" placeholder="Enter Email" required type="email" />
+            <input id="email" placeholder="Enter Email" required type="email" v-model="email" />
           </div>
         </div>
 
         <div class="bottom-grid">
-          <input placeholder="Say something..." required type="text" />
+          <input placeholder="Say something..." required type="text" v-model="content" />
           <button class="click" type="submit">Submit</button>
         </div>
       </div>

@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import { comments } from '@/data/comments'
+import { comments, Content } from '@/data/comments'
+import { onMounted } from 'vue'
+
+const obj = new Content()
+onMounted(() => {
+  obj.loadComment()
+})
 </script>
 
 <template>
@@ -8,16 +14,17 @@ import { comments } from '@/data/comments'
       <h1>What people say</h1>
       <p>Elktrum Elk</p>
     </div>
+
     <div class="cmt-div">
       <div class="overlay"></div>
-      <div class="horizontal-scroll" id="horizontal-scroll">
+      <div class="horizontal-scroll" id="horizontal-scroll" v-if="comments.length !== 0">
         <div class="horiz-cnt">
           <article class="card" v-for="(data, idx) in comments" :key="idx" :id="`art_${idx}`">
             <div class="profile"></div>
 
             <section class="info">
               <h1>{{ data.username }}</h1>
-              <p>{{ data.comment }}</p>
+              <p>{{ data.content }}</p>
             </section>
           </article>
 
@@ -26,10 +33,13 @@ import { comments } from '@/data/comments'
 
             <section class="info">
               <h1>{{ data.username }}</h1>
-              <p>{{ data.comment }}</p>
+              <p>{{ data.content }}</p>
             </section>
           </article>
         </div>
+      </div>
+      <div v-else>
+        <span>No comment</span>
       </div>
     </div>
   </section>

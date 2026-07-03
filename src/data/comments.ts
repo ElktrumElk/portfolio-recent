@@ -1,26 +1,30 @@
-export const comments = [
-  {
-    id: 1,
-    profile: 'https://splash.com',
-    username: 'Abdul Aziz',
-    comment: 'Elktrum you are really an inspiring helping other young devs like use.',
-  },
-  {
-    id: 2,
-    profile: 'https://splash.com',
-    username: 'Alice Gborie',
-    comment: 'Elk you really inspired me interms of web design and responsivness',
-  },
-  {
-    id: 3,
-    profile: 'https://splash.com',
-    username: 'Amadu Kamara',
-    comment: 'You are a Genius. Nice portfolio keep up the good work',
-  },
-  {
-    id: 4,
-    profile: 'https://splash.com',
-    username: 'Denise George',
-    comment: 'Nice!!',
-  },
-]
+import { useRerender } from '@/modules/render-vue'
+import { getReviews } from '@/network/get_message'
+
+interface content {
+  id: number
+  profile: string
+  username: string
+  content: string
+}
+
+export class Content {
+  static comments: content[] = []
+
+  set addContent(con: content) {
+    Content.comments.push(con)
+  }
+  get getContent() {
+    return Content.comments
+  }
+
+  set replaceContent(con: content[]) {
+    Content.comments = con
+  }
+  loadComment = async () => {
+    await getReviews()
+  }
+}
+
+export const [comments, setComment] = useRerender<content[]>(Content.comments);
+
