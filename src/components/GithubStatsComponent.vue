@@ -108,20 +108,8 @@ onMounted(async () => {
 
     <div v-else class="cards">
       <img
-        :src="`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&count_private=true&hide_border=true&theme=transparent&text_color=94a3b8&icon_color=2563eb&title_color=2563eb`"
-        alt="GitHub Stats"
-        class="gh-card"
-        loading="lazy"
-      />
-      <img
         :src="`https://github-readme-streak-stats.herokuapp.com/?user=${username}&hide_border=true&theme=transparent&text_color=94a3b8&stroke=2563eb&ring=2563eb&fire=0d9488&currStreakNum=94a3b8`"
         alt="GitHub Streak"
-        class="gh-card"
-        loading="lazy"
-      />
-      <img
-        :src="`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&hide_border=true&theme=transparent&text_color=94a3b8&title_color=2563eb`"
-        alt="Top Languages"
         class="gh-card"
         loading="lazy"
       />
@@ -189,6 +177,7 @@ onMounted(async () => {
   gap: 1rem;
   width: 100%;
   max-width: 600px;
+  width: 100%;
 }
 
 .gh-card {
@@ -196,6 +185,7 @@ onMounted(async () => {
   max-width: 500px;
   height: auto;
   border-radius: 0.75rem;
+  margin-inline: auto;
 }
 
 .fallback {
@@ -302,11 +292,6 @@ onMounted(async () => {
 }
 
 @media (min-width: 920px) {
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    max-width: unset;
-  }
   .gh-card {
     transform: scale(0.9);
     cursor: pointer;
@@ -315,7 +300,7 @@ onMounted(async () => {
   .gh-card:nth-child(2) {
     transform: scale(1.1);
   }
-  
+
   .gh-card:hover {
     transform: scale(1.5);
     box-shadow: 0 10px 1rem 0.5rem rgba(13, 148, 136, 0.2);

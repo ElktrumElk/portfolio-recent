@@ -57,9 +57,9 @@ function project(theta: number, phi: number): [number, number, number] {
   const pulse = 1 + Math.sin(time * 0.015) * 0.015
   const r = base * pulse
 
-  let x = r * Math.sin(theta) * Math.cos(phi)
-  let y = r * Math.cos(theta)
-  let z = r * Math.sin(theta) * Math.sin(phi)
+  const x = r * Math.sin(theta) * Math.cos(phi)
+  const y = r * Math.cos(theta)
+  const z = r * Math.sin(theta) * Math.sin(phi)
 
   const cosY = Math.cos(currentRotY)
   const sinY = Math.sin(currentRotY)
@@ -192,7 +192,7 @@ function draw() {
 
   time += 1
 
-  const dpr = window.devicePixelRatio || 1
+  //const dpr = window.devicePixelRatio || 1
   ctx.clearRect(0, 0, width, height)
 
   const cx = width / 2

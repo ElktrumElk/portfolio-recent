@@ -5,12 +5,15 @@ import { isMenu } from './context/general.ts'
 import { RouterView } from 'vue-router'
 import RIppleWaterComponent from './components/RIppleWaterComponent.vue'
 import UvSphereComponent from './components/UvSphereComponent.vue'
+
+const device = window.screen.width
+console.log(device)
 </script>
 
 <template>
   <div class="overlay-hover-2"></div>
   <UvSphereComponent />
-  <RIppleWaterComponent />
+  <RIppleWaterComponent v-if="device > 800" />
 
   <div class="app">
     <HeaderComponent />
