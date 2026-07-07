@@ -3,14 +3,13 @@ import HeaderComponent from './components/HeaderComponent.vue'
 import MenuComponent from './components/MenuComponent.vue'
 import { isMenu } from './context/general.ts'
 import { RouterView } from 'vue-router'
-import MouseDustComponent from './components/MouseDustComponent.vue'
 import RIppleWaterComponent from './components/RIppleWaterComponent.vue'
+import UvSphereComponent from './components/UvSphereComponent.vue'
 </script>
 
 <template>
   <div class="overlay-hover-2"></div>
-  <div class="overlay-hover"></div>
-  <MouseDustComponent />
+  <UvSphereComponent />
   <RIppleWaterComponent />
 
   <div class="app">

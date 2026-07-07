@@ -33,8 +33,8 @@ const getPointerCoordinates = (event: MouseEvent | TouchEvent, rect: DOMRect) =>
     // If it's a touch event, read the first active finger contact vector
     if (event.touches.length === 0) return { x: lastMouseX, y: lastMouseY }
     return {
-      x: event.touches[0].clientX - rect.left,
-      y: event.touches[0].clientY - rect.top,
+      x: event!.touches[0]!.clientX - rect.left,
+      y: event!.touches[0]!.clientY - rect.top,
     }
   } else {
     // Otherwise, parse standard cursor layout values
@@ -132,7 +132,7 @@ const draw = () => {
       ctx.arc(r!.x + 2, r!.y + 2, r!.radius - 1, 0, Math.PI * 2)
       ctx.stroke()
 
-      nextRipples.push(r)
+      nextRipples.push(r!)
     }
   }
 
