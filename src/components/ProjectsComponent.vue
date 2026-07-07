@@ -27,7 +27,7 @@ const projects = [
     description:
       'A management app that helps businesses track POS transactions and streamline operations.',
     repoLink: 'https://github.com/favmaclegend-opps/MerchantCore',
-    previewLink: 'https://MerchantCore.vercel.app',
+    previewLink: 'https://merchant-core-bay.vercel.app',
     imgLinke: '/merchant-core.jpeg',
     tags: ['TypeScript', 'React', 'MySQL'],
   },
@@ -51,18 +51,42 @@ const projects = [
     imgLinke: '',
     tags: ['React Native', 'Expo'],
   },
+  {
+    id: 6,
+    name: 'Reminder Mobile',
+    description: 'A Mobile version of the Reminder web application using flutter',
+    repoLink: 'https://github.com/ElktrumElk/Reminder',
+    previewLink: 'https://front-devs.vercel.app',
+    imgLinke: '',
+    tags: ['flutter'],
+  },
+  {
+    id: 7,
+    name: 'Dating',
+    description: 'A Dating mobile application that pair you with your right partner with just a click.',
+    repoLink: 'https://github.com/ElktrumElk/Reminder',
+    previewLink: 'https://front-devs.vercel.app',
+    imgLinke: '',
+    tags: ['flutter'],
+  },
 ]
 </script>
 
 <template>
   <section class="proj-section" id="project">
     <div class="header">
+      <div class="section-badge">Portfolio</div>
       <h1 class="gradient-heading">Projects</h1>
       <p>Explore my workflow and get inspired!</p>
     </div>
 
     <div class="proj-cnt">
-      <div class="project-card" v-for="(project, idx) in projects" :key="idx">
+      <div
+        class="project-card"
+        v-for="(project, idx) in projects"
+        :key="idx"
+        :class="{ featured: idx === 0 }"
+      >
         <div class="img-wrap">
           <div
             class="img"
@@ -72,25 +96,54 @@ const projects = [
           >
             <div class="img-overlay"></div>
             <div class="img-placeholder" v-if="!project.imgLinke">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                <circle cx="8.5" cy="8.5" r="1.5"/>
-                <polyline points="21 15 16 10 5 21"/>
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <circle cx="8.5" cy="8.5" r="1.5" />
+                <polyline points="21 15 16 10 5 21" />
               </svg>
             </div>
           </div>
           <div class="img-actions">
             <a :href="project.previewLink" target="_blank" class="action-btn primary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                <polyline points="15 3 21 3 21 9"/>
-                <line x1="10" y1="14" x2="21" y2="3"/>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                <polyline points="15 3 21 3 21 9" />
+                <line x1="10" y1="14" x2="21" y2="3" />
               </svg>
               Preview
             </a>
             <a :href="project.repoLink" target="_blank" class="action-btn secondary">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                />
               </svg>
               Repo
             </a>
@@ -131,6 +184,7 @@ const projects = [
   padding-top: 10rem;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  padding-bottom: 3rem;
 }
 
 .proj-section .header {
@@ -141,16 +195,31 @@ const projects = [
   gap: 0.2rem;
 }
 
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.3rem;
+}
+
 .gradient-heading {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .proj-section .header p {
-  color: gray;
   font-size: 0.95rem;
 }
 
@@ -168,14 +237,25 @@ const projects = [
   flex-direction: column;
   background: var(--global-component-bg);
   overflow: hidden;
-  border: 1px solid transparent;
+  box-shadow: var(--global-component-shadow);
+  border: 1px solid rgba(37, 99, 235, 0.08);
   transition: all 0.35s ease;
 }
 
 .project-card:hover {
-  border-color: rgba(102, 126, 234, 0.25);
+  border-color: rgba(37, 99, 235, 0.25);
   transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.12);
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.12);
+}
+
+.project-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.project-card.featured .proj-cnt-sec {
+  justify-content: center;
 }
 
 .img-wrap {
@@ -240,7 +320,7 @@ const projects = [
 }
 
 .action-btn.primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   color: #fff;
 }
 
@@ -255,7 +335,7 @@ const projects = [
 }
 
 .action-btn.primary:hover {
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
 }
 
 .action-btn.secondary:hover {
@@ -279,7 +359,7 @@ const projects = [
 .title-cnt h1 {
   color: var(--global-txt-cl);
   font-size: 1.2rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -292,10 +372,8 @@ const projects = [
 }
 
 .desc-cnt p {
-  color: var(--global-txt-cl);
   font-size: 0.9rem;
-  line-height: 1.6;
-  opacity: 0.75;
+  line-height: 1.7;
 }
 
 .tags {
@@ -309,8 +387,8 @@ const projects = [
   padding: 0.2rem 0.6rem;
   border-radius: 0.4rem;
   font-size: 0.75rem;
-  background: rgba(102, 126, 234, 0.12);
-  color: #667eea;
+  background: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
 }
 
 @media (max-width: 600px) {
@@ -323,6 +401,9 @@ const projects = [
   .project-card {
     flex: 1 1 auto;
     width: 100%;
+  }
+  .project-card.featured {
+    grid-template-columns: 1fr;
   }
 }
 </style>

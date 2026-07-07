@@ -20,8 +20,9 @@ const toggleSkill = (key: number) => {
 <template>
   <section class="skill-section" id="skill">
     <div class="header">
-      <h1 class="gradient-heading">Skills</h1>
-      <p>Know what i'm good at</p>
+      <div class="section-badge">Expertise</div>
+      <h1 class="gradient-heading">Skills &amp; Tools</h1>
+      <p>Know what I'm good at</p>
     </div>
     <div class="skill-cnt" id="skill-cnt">
       <section class="tech-skills">
@@ -204,7 +205,7 @@ const toggleSkill = (key: number) => {
 
       <section class="soft-skills">
         <div class="section-label">
-          <span class="label-dot pink"></span>
+          <span class="label-dot teal"></span>
           <h1>Soft Skills</h1>
         </div>
         <ul>
@@ -299,16 +300,31 @@ const toggleSkill = (key: number) => {
   gap: 0.2rem;
 }
 
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.3rem;
+}
+
 .gradient-heading {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .skill-section .header p {
-  color: gray;
   font-size: 0.95rem;
 }
 
@@ -330,12 +346,12 @@ const toggleSkill = (key: number) => {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   flex-shrink: 0;
 }
 
-.label-dot.pink {
-  background: linear-gradient(135deg, #667eea, #f093fb);
+.label-dot.teal {
+  background: linear-gradient(135deg, #2563eb, #0d9488);
 }
 
 .tech-skills,
@@ -348,13 +364,15 @@ const toggleSkill = (key: number) => {
   background: var(--global-component-bg);
   gap: 1.25rem;
   overflow: hidden;
+  box-shadow: var(--global-component-shadow);
+  border: 1px solid rgba(37, 99, 235, 0.06);
 }
 
 .tech-skills h1,
 .soft-skills h1 {
   color: var(--global-txt-cl);
   font-size: 130%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -383,14 +401,14 @@ ul {
 }
 
 .skill-card:hover {
-  border-color: rgba(102, 126, 234, 0.25);
+  border-color: rgba(37, 99, 235, 0.25);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
 }
 
 .skill-card.expandable.active {
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 4px 24px rgba(102, 126, 234, 0.15);
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.15);
 }
 
 .skill-card-inner {
@@ -412,7 +430,7 @@ ul {
   width: 36px;
   height: 36px;
   border-radius: 0.6rem;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(13, 148, 136, 0.15));
   flex-shrink: 0;
 }
 
@@ -421,17 +439,17 @@ ul {
   display: flex;
   width: 20px;
   height: 20px;
-  filter: brightness(0) saturate(100%) invert(48%) sepia(89%) saturate(541%) hue-rotate(199deg)
-    brightness(95%) contrast(90%);
+  filter: brightness(0) saturate(100%) invert(36%) sepia(98%) saturate(1648%) hue-rotate(213deg)
+    brightness(97%) contrast(91%);
 }
 
 .soft-icon {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.12), rgba(240, 147, 251, 0.12));
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(13, 148, 136, 0.12));
 }
 
 .soft-icon .img {
-  filter: brightness(0) saturate(100%) invert(58%) sepia(82%) saturate(446%) hue-rotate(229deg)
-    brightness(97%) contrast(91%);
+  filter: brightness(0) saturate(100%) invert(48%) sepia(83%) saturate(548%) hue-rotate(143deg)
+    brightness(93%) contrast(85%);
 }
 
 .f-cnt {
@@ -444,7 +462,7 @@ ul {
 .arrow {
   display: flex;
   align-items: center;
-  color: #667eea;
+  color: #2563eb;
   transition: transform 0.3s ease;
   opacity: 0.6;
 }
@@ -469,7 +487,7 @@ ul {
 .level-fill {
   height: 100%;
   border-radius: 4px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: linear-gradient(90deg, #2563eb, #0d9488);
   transition: width 0.6s ease;
 }
 
@@ -500,20 +518,20 @@ ul {
   gap: 0.6rem;
   padding: 0.4rem 0.75rem;
   border-radius: 0.5rem;
-  background: rgba(102, 126, 234, 0.08);
+  background: rgba(37, 99, 235, 0.08);
   font-size: 0.9rem;
   transition: background 0.2s ease;
 }
 
 .sub-skill:hover {
-  background: rgba(102, 126, 234, 0.15);
+  background: rgba(37, 99, 235, 0.15);
 }
 
 .sub-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   flex-shrink: 0;
 }
 
@@ -536,7 +554,7 @@ ul {
 
 .soft-desc {
   font-size: 0.8rem;
-  opacity: 0.55;
+  color: var(--global-txt-secondary);
 }
 
 @media (max-width: 600px) {

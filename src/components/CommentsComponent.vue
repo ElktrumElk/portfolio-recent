@@ -11,6 +11,7 @@ onMounted(() => {
 <template>
   <section class="comment-sec" id="comments">
     <div class="header">
+      <div class="section-badge">Testimonials</div>
       <h1>What people say</h1>
       <p>Elktrum Elk</p>
     </div>
@@ -28,7 +29,12 @@ onMounted(() => {
             </section>
           </article>
 
-          <article class="card" v-for="(data, idx) in comments" :key="idx" :id="`art_${idx}`">
+          <article
+            class="card"
+            v-for="(data, idx) in comments"
+            :key="idx + 'dup'"
+            :id="`art_${idx}`"
+          >
             <div class="profile"></div>
 
             <section class="info">
@@ -38,7 +44,7 @@ onMounted(() => {
           </article>
         </div>
       </div>
-      <div v-else>
+      <div v-else :style="{ marginInline: 'auto' }">
         <span>No comment</span>
       </div>
     </div>
@@ -69,15 +75,32 @@ onMounted(() => {
   gap: 0.3rem;
 }
 
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.3rem;
+}
+
 .header h1 {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-size: clamp(2rem, 4vw, 3rem);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .header p {
-  color: gray;
+  color: var(--global-txt-secondary);
 }
 
 .cmt-div {
@@ -135,13 +158,15 @@ onMounted(() => {
   flex: 0 0 auto;
   width: 100%;
   max-width: 30rem;
+  box-shadow: var(--global-component-shadow);
+  border: 1px solid rgba(37, 99, 235, 0.06);
 }
 
 .card:hover {
   border: 1px solid;
-  border-color: rgba(102, 126, 234, 0.648);
+  border-color: rgba(37, 99, 235, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
 }
 
 .profile {
@@ -163,14 +188,14 @@ onMounted(() => {
   color: var(--global-txt-cl);
   font-size: 1.2rem;
   line-height: 1.2rem;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .info p {
-  color: var(--global-txt-cl);
+  color: var(--global-txt-secondary);
 }
 @media (max-width: 600px) {
   .card {

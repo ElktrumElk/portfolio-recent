@@ -63,6 +63,7 @@ onMounted(async () => {
 <template>
   <section class="github-section" id="github">
     <div class="header">
+      <div class="section-badge">Open Source</div>
       <h1>GitHub Statistics</h1>
       <p>My open source presence</p>
     </div>
@@ -107,19 +108,19 @@ onMounted(async () => {
 
     <div v-else class="cards">
       <img
-        :src="`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&count_private=true&hide_border=true&theme=transparent&text_color=8b949e&icon_color=667eea&title_color=667eea`"
+        :src="`https://github-readme-stats.vercel.app/api?username=${username}&show_icons=true&count_private=true&hide_border=true&theme=transparent&text_color=94a3b8&icon_color=2563eb&title_color=2563eb`"
         alt="GitHub Stats"
         class="gh-card"
         loading="lazy"
       />
       <img
-        :src="`https://github-readme-streak-stats.herokuapp.com/?user=${username}&hide_border=true&theme=transparent&text_color=8b949e&stroke=667eea&ring=667eea&fire=764ba2&currStreakNum=8b949e`"
+        :src="`https://github-readme-streak-stats.herokuapp.com/?user=${username}&hide_border=true&theme=transparent&text_color=94a3b8&stroke=2563eb&ring=2563eb&fire=0d9488&currStreakNum=94a3b8`"
         alt="GitHub Streak"
         class="gh-card"
         loading="lazy"
       />
       <img
-        :src="`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&hide_border=true&theme=transparent&text_color=8b949e&title_color=667eea`"
+        :src="`https://github-readme-stats.vercel.app/api/top-langs/?username=${username}&layout=compact&hide_border=true&theme=transparent&text_color=94a3b8&title_color=2563eb`"
         alt="Top Languages"
         class="gh-card"
         loading="lazy"
@@ -151,13 +152,33 @@ onMounted(async () => {
   gap: 0.2rem;
 }
 
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.3rem;
+}
+
 .header h1 {
   color: var(--global-txt-cl);
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(2rem, 4vw, 3rem);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
 }
 
 .header p {
-  color: gray;
   font-size: 0.95rem;
 }
 
@@ -201,13 +222,13 @@ onMounted(async () => {
   background: var(--global-component-bg);
   border-radius: 1rem;
   padding: 1.25rem 1rem;
+  box-shadow: var(--global-component-shadow);
+  border: 1px solid rgba(37, 99, 235, 0.06);
 }
 
 .stat-icon {
   font-size: 1.5rem;
   line-height: 1;
-  color: var(--global-txt-cl);
-  opacity: 0.7;
 }
 
 .stat-icon svg {
@@ -215,7 +236,7 @@ onMounted(async () => {
 }
 
 .stat-icon.star {
-  color: #f5a623;
+  color: #d97706;
   font-size: 1.8rem;
 }
 
@@ -226,7 +247,7 @@ onMounted(async () => {
 .stat-value {
   font-size: 1.75rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -235,8 +256,6 @@ onMounted(async () => {
 
 .stat-label {
   font-size: 0.8rem;
-  opacity: 0.7;
-  color: var(--global-txt-cl);
 }
 
 .languages {
@@ -260,12 +279,12 @@ onMounted(async () => {
 }
 
 .lang-tag {
-  background: var(--global-component-bg);
+  background: var(--global-section-component-bg);
   color: var(--global-txt-cl);
   padding: 0.35rem 0.9rem;
   border-radius: 2rem;
   font-size: 0.85rem;
-  border: 1px solid rgba(128, 128, 128, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.15);
 }
 
 @media (max-width: 600px) {
@@ -299,7 +318,7 @@ onMounted(async () => {
   
   .gh-card:hover {
     transform: scale(1.5);
-    box-shadow: 0 10px 1rem 0.5rem rgb(8, 8, 8);
+    box-shadow: 0 10px 1rem 0.5rem rgba(13, 148, 136, 0.2);
     z-index: 11;
     backdrop-filter: blur(5px);
   }

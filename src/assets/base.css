@@ -1,68 +1,82 @@
 :root {
-  --bg-gen-cl: rgb(255, 255, 255);
-  --bg-gen-cl-a: rgb(255, 255, 255);
+  --bg-gen-cl: #ffffff;
+  --bg-gen-cl-a: #ffffff;
 
-  --bg-cl: linear-gradient(to right, transparent 5%, rgb(203, 203, 203) 6% 9%, transparent 10%);
+  --bg-cl: linear-gradient(to right, transparent 5%, #dce3ed 6% 9%, transparent 10%);
   --bg-cl-a: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 5%,
-    rgb(230, 230, 230) 6% 7%,
+    #e8edf3 6% 7%,
     rgba(0, 0, 0, 0) 8%
   );
-  --global-txt-cl: black;
-  --global-border: 1px solid rgba(0, 136, 255, 0.802);
+  --global-txt-cl: #0f172a;
+  --global-txt-secondary: #475569;
+  --global-border: 1px solid rgba(37, 99, 235, 0.3);
   --skill-grid-column: 1fr 1fr;
-  --global-component-bg: rgb(235, 234, 234);
-  --global-section-component-bg: rgb(226, 226, 226);
+  --global-component-bg: #ffffff;
+  --global-component-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --over-cl: white;
+  --over-cl-b: white;
+
+  --global-section-component-bg: #f1f5f9;
 }
 
 body.dark {
-  --bg-gen-cl: black;
-  --bg-gen-cl-a: black;
-  --bg-cl: linear-gradient(to right, black 5%, rgb(16, 16, 16) 6% 9%, black 10%);
+  --bg-gen-cl: #0a0f1a;
+  --bg-gen-cl-a: #0a0f1a;
+  --bg-cl: linear-gradient(to right, #0a0f1a 5%, #111827 6% 9%, #0a0f1a 10%);
   --bg-cl-a: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 5%,
-    rgb(16, 16, 16) 6% 7%,
+    #111827 6% 7%,
     rgba(0, 0, 0, 0) 8%
   );
-  --global-txt-cl: white;
-  --global-component-bg: rgb(25, 25, 25);
-  --global-section-component-bg: rgb(20, 20, 20);
+  --global-txt-cl: #f1f5f9;
+  --global-txt-secondary: #94a3b8;
+  --global-component-bg: #1e293b;
+  --global-component-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+  --global-section-component-bg: #0f172a;
+  --over-cl: rgb(3, 146, 199) 25%;
+  --over-cl-b: black;
 }
 
 body.light {
-  --bg-gen-cl: rgb(255, 255, 255);
-  --bg-gen-cl-a: rgb(255, 255, 255);
-
-  --bg-cl: linear-gradient(to right, transparent 5%, rgb(203, 203, 203) 6% 9%, transparent 10%);
+  --bg-gen-cl: #ffffff;
+  --bg-gen-cl-a: #ffffff;
+  --bg-cl: linear-gradient(to right, transparent 5%, #dce3ed 6% 9%, transparent 10%);
   --bg-cl-a: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 5%,
-    rgb(230, 230, 230) 6% 7%,
+    #e8edf3 6% 7%,
     rgba(0, 0, 0, 0) 8%
   );
-  --global-txt-cl: black;
-  --global-border: 1px solid rgba(0, 136, 255, 0.802);
+  --global-txt-cl: #0f172a;
+  --global-txt-secondary: #475569;
+  --global-border: 1px solid rgba(37, 99, 235, 0.3);
   --skill-grid-column: 1fr 1fr;
-  --global-component-bg: rgb(235, 234, 234);
-  --global-section-component-bg: rgb(226, 226, 226);
+  --global-component-bg: #ffffff;
+  --global-component-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.08);
+  --global-section-component-bg: #f1f5f9;
+  --over-cl-b: white;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg-cl: linear-gradient(to right, black 5%, rgb(16, 16, 16) 6% 9%, black 10%);
+    --bg-cl: linear-gradient(to right, #0a0f1a 5%, #111827 6% 9%, #0a0f1a 10%);
     --bg-cl-a: repeating-linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 5%,
-      rgb(16, 16, 16) 6% 7%,
+      #111827 6% 7%,
       rgba(0, 0, 0, 0) 8%
     );
-    --bg-gen-cl: black;
-    --global-txt-cl: white;
-    --global-component-bg: rgb(25, 25, 25);
-    --global-section-component-bg: rgb(20, 20, 20);
-    --bg-gen-cl-a: black;
+    --bg-gen-cl: #0a0f1a;
+    --global-txt-cl: #f1f5f9;
+    --global-txt-secondary: #94a3b8;
+    --global-component-bg: #1e293b;
+    --global-component-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
+    --global-section-component-bg: #0f172a;
+    --bg-gen-cl-a: #0a0f1a;
+    --over-cl-b: black;
   }
 }
 
@@ -71,7 +85,6 @@ body.light {
 *::after {
   box-sizing: border-box;
   margin: 0;
-  font-weight: normal;
 }
 
 *::-webkit-scrollbar {
@@ -83,8 +96,8 @@ body.light {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgba(3, 133, 203, 0.287);
-  border: var(--global-border);
+  background: rgba(37, 99, 235, 0.3);
+  border: 1px solid rgba(37, 99, 235, 0.15);
   border-radius: 1rem;
 }
 
@@ -97,17 +110,17 @@ body.light {
 body {
   min-height: 100vh;
   height: 100vh;
-  color: var(--color-text);
+  color: var(--global-txt-cl);
   background: var(--bg-gen-cl);
-
   inset: 0;
   overflow: hidden;
   transition:
-    color 0.5s,
-    background-color 0.5s;
-  line-height: 1.6;
+    color 0.3s,
+    background-color 0.3s;
+  line-height: 1.7;
   font-family:
-    Inter,
+    'Inter',
+    'Poppins',
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
@@ -119,10 +132,26 @@ body {
     'Droid Sans',
     'Helvetica Neue',
     sans-serif;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: flex;
   flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  font-weight: 400;
+  color: var(--global-txt-secondary);
 }

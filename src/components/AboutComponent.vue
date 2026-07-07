@@ -26,6 +26,7 @@ onMounted(() => {
   >
     <div class="about-cnt">
       <div class="about-info">
+        <div class="section-badge">About Me</div>
         <h1 class="greetings">Hi, I'm Elkanah</h1>
         <p class="description">
           I'm a full-stack developer and UI engineer passionate about building accessible,
@@ -60,6 +61,19 @@ onMounted(() => {
         <div class="button-cnt">
           <router-link to="/projects" class="vw-pj-btn">
             <span>View Projects</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </router-link>
           <a href="mailto:elkanahcole@gmail.com" class="vw-pj-btn contact-btn">
             <span>Contact Me</span>
@@ -103,11 +117,27 @@ onMounted(() => {
   width: 100%;
 }
 
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  width: fit-content;
+}
+
 .greetings {
-  font-family: 'Playfair Display', serif;
+  font-family: sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -115,8 +145,7 @@ onMounted(() => {
 
 .description {
   font-size: 1.05rem;
-  line-height: 1.7;
-  opacity: 0.85;
+  line-height: 1.8;
   max-width: 540px;
 }
 
@@ -133,12 +162,13 @@ onMounted(() => {
   background: var(--global-component-bg);
   border-radius: 0.75rem;
   padding: 0.75rem 1rem;
+  box-shadow: var(--global-component-shadow);
 }
 
 .stat-num {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea, #f093fb);
+  background: linear-gradient(135deg, #2563eb, #0d9488);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -147,7 +177,7 @@ onMounted(() => {
 
 .stat-label {
   font-size: 0.8rem;
-  opacity: 0.7;
+  color: var(--global-txt-secondary);
 }
 
 .button-cnt {
@@ -159,13 +189,15 @@ onMounted(() => {
 
 .vw-pj-btn {
   display: flex;
-  background: none;
-  color: var(--global-txt-cl);
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  color: #fff;
   border-radius: 2rem;
   padding: 0.6rem 1.5rem;
-  border: var(--global-border);
+  border: none;
   cursor: pointer;
-  box-shadow: 0 0 0 0 rgb(0, 208, 255);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
   transition:
     box-shadow 0.5s ease,
     transform 0.3s ease;
@@ -175,18 +207,22 @@ onMounted(() => {
 
 .vw-pj-btn:hover {
   box-shadow:
-    0 0 1rem rgb(0, 208, 255),
-    0 0 2rem rgb(0, 130, 185);
+    0 0 1rem rgba(37, 99, 235, 0.5),
+    0 0 2rem rgba(13, 148, 136, 0.3);
   transform: translateY(-2px);
 }
 
 .contact-btn {
-  border-color: rgba(128, 128, 128, 0.3);
+  background: transparent;
+  color: var(--global-txt-cl);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  box-shadow: none;
 }
 
 .contact-btn:hover {
-  border-color: rgba(102, 126, 234, 0.6);
+  border-color: rgba(37, 99, 235, 0.6);
   box-shadow: none;
+  background: rgba(37, 99, 235, 0.05);
 }
 
 .about-highlights {
@@ -197,17 +233,19 @@ onMounted(() => {
 }
 
 .highlight-card {
-  background: var(--global-component-bg);
+  background: var(--global-section-component-bg);
   border-radius: 1rem;
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   transition: transform 0.3s ease;
+  border: 1px solid rgba(37, 99, 235, 0.06);
 }
 
 .highlight-card:hover {
   transform: translateX(4px);
+  border-color: rgba(37, 99, 235, 0.15);
 }
 
 .highlight-icon {
@@ -222,9 +260,7 @@ onMounted(() => {
 
 .highlight-card p {
   font-size: 0.9rem;
-  opacity: 0.7;
-  line-height: 1.5;
-  color: var(--global-txt-cl);
+  line-height: 1.6;
 }
 
 @media (max-width: 800px) {

@@ -17,19 +17,42 @@ onMounted(() => {
       <span class="blob blob-1"></span>
       <span class="blob blob-2"></span>
       <span class="blob blob-3"></span>
+      <span class="blob blob-4"></span>
+      <div class="grid-pattern"></div>
     </div>
 
     <div class="welcome-content" :class="{ visible: isVisible }">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        <span>Available for work</span>
+      </div>
       <p class="greeting">Hello, I'm</p>
       <h1 class="name">Elkanah Cole</h1>
       <p class="title">Full-Stack Developer &amp; UI Engineer</p>
       <div class="cta-group">
         <RouterLink to="/projects" class="btn btn-primary">
           <span>View My Work</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
         </RouterLink>
         <RouterLink to="/contact" class="btn btn-secondary">
           <span>Get In Touch</span>
         </RouterLink>
+      </div>
+      <div class="scroll-indicator">
+        <span class="scroll-text">Scroll to explore</span>
+        <span class="scroll-line"></span>
       </div>
     </div>
   </section>
@@ -55,39 +78,56 @@ onMounted(() => {
   pointer-events: none;
 }
 
+.grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(60px);
-  opacity: 0.3;
+  filter: blur(80px);
+  opacity: 0.2;
 }
 
 .blob-1 {
-  width: 400px;
-  height: 400px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  top: -10%;
-  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  top: -15%;
+  left: -10%;
   animation: float 20s ease-in-out infinite;
 }
 
 .blob-2 {
-  width: 350px;
-  height: 350px;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
-  bottom: -5%;
-  right: -5%;
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #0d9488, #0891b2);
+  bottom: -10%;
+  right: -8%;
   animation: float 25s ease-in-out infinite reverse;
 }
 
 .blob-3 {
-  width: 250px;
-  height: 250px;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #2563eb, #0d9488);
+  top: 40%;
+  left: 60%;
   animation: float 18s ease-in-out infinite 2s;
+}
+
+.blob-4 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #1e3a5f, #0891b2);
+  top: 70%;
+  left: 15%;
+  animation: float 22s ease-in-out infinite 4s;
 }
 
 @keyframes float {
@@ -121,6 +161,38 @@ onMounted(() => {
   transform: translateY(0);
 }
 
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  margin-bottom: 1.5rem;
+  font-size: 0.8rem;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #059669;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
 .greeting {
   font-family: 'Poppins', sans-serif;
   font-size: 1.25rem;
@@ -133,12 +205,12 @@ onMounted(() => {
 }
 
 .name {
-  font-family: 'Playfair Display', serif;
+  font-family: sans-serif;
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb, #0d9488);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -190,16 +262,15 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow:
-    0 8px 30px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.6);
 }
 
 .btn-secondary {
@@ -209,9 +280,45 @@ onMounted(() => {
 }
 
 .btn-secondary:hover {
-  border-color: rgba(102, 126, 234, 0.6);
-  background: rgba(102, 126, 234, 0.05);
+  border-color: rgba(37, 99, 235, 0.6);
+  background: rgba(37, 99, 235, 0.05);
   transform: translateY(-2px);
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 3.5rem;
+}
+
+.scroll-text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--global-txt-cl);
+  opacity: 0.4;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--global-txt-cl), transparent);
+  opacity: 0.3;
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.2);
+  }
 }
 
 @media (max-width: 600px) {
@@ -231,6 +338,10 @@ onMounted(() => {
   }
 
   .blob-3 {
+    display: none;
+  }
+
+  .blob-4 {
     display: none;
   }
 

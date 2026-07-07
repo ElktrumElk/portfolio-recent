@@ -24,6 +24,7 @@ const handleReviewSubmint = (e: SubmitEvent) => {
 <template>
   <section class="leave-review" id="review">
     <div class="header">
+      <div class="section-badge">Feedback</div>
       <h1>Review</h1>
       <p>Leave a review</p>
     </div>
@@ -66,14 +67,35 @@ const handleReviewSubmint = (e: SubmitEvent) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.2rem;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.3rem;
 }
 
 .header h1 {
-  color: var(--global-txt-cl);
+  font-size: clamp(2rem, 4vw, 3rem);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header p {
-  color: gray;
+  color: var(--global-txt-secondary);
 }
 
 form {
@@ -82,8 +104,8 @@ form {
   flex-direction: column;
   padding: 1rem;
   background: var(--global-component-bg);
-  border: 1px solid rgba(102, 126, 234, 0);
-  box-shadow: 0 0px 0px rgba(102, 126, 234, 0.12);
+  box-shadow: var(--global-component-shadow);
+  border: 1px solid rgba(37, 99, 235, 0.08);
   transform: translateY(0);
   transition:
     box-shadow 0.4s ease,
@@ -94,8 +116,8 @@ form {
 }
 
 form:hover {
-  border: 1px solid rgba(102, 126, 234, 0.323);
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
   transform: translateY(-3%);
 }
 form > div {
@@ -156,14 +178,21 @@ form > div {
 
 .bottom-grid button {
   padding: 0.5rem 4rem;
-  background: linear-gradient(19deg, #667eea, #3149b6);
+  background: linear-gradient(19deg, #1e3a5f, #2563eb);
   border: var(--global-border);
   border-radius: 1rem;
-  color: var(--global-txt-cl);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   user-select: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.bottom-grid button:hover {
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  transform: translateY(-1px);
 }
 
 @media (max-width: 600px) {

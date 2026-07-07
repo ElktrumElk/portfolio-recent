@@ -1,29 +1,61 @@
 <script lang="ts" setup>
 import { contact } from '@/data/conatcts'
 import { useRerender } from '@/modules/render-vue'
+import { onMounted } from 'vue'
 
 const [activeContact, setActiveContact] = useRerender<number | null>(null)
 
+// contact toggling
 const toggleContact = (key: number) => {
   setActiveContact(activeContact.value === key ? null : key)
 }
+
+// raw transition values
+const [transition, setTransition] = useRerender<number[]>([-90, 100, -100])
+
+// initial transitions property value
+const [transProperties, setTransProperties] = useRerender([
+  `translateX(${transition.value[0]}%)`,
+  `translateY(${transition.value[1]}%)`,
+  `translateY(${transition.value[2]}%)`,
+])
+
+onMounted(async () => {
+  setTimeout(() => {
+    requestAnimationFrame(() => {
+      setTransition([0, 0, 0])
+      setTransProperties([
+        `translateX(${transition.value[0]}%)`,
+        `translateY(${transition.value[1]}%)`,
+        `translateY(${transition.value[2]}%)`,
+      ])
+    })
+  }, 1)
+})
 </script>
 
 <template>
   <section class="contact-section" id="contact">
     <div class="header">
-      <h1>Contacts</h1>
+      <div class="section-badge">Connect</div>
+      <h1>Get In Touch</h1>
+      <p>I'd love to hear from you</p>
     </div>
     <div class="contact-cnt">
       <ul class="ulist">
         <li
           v-for="(item, index) in [
-            { label: 'Email', value: contact.email, icon: 'https://img.icons8.com/?size=100&id=30&format=png&color=7a7a7a' },
+            {
+              label: 'Email',
+              value: contact.email,
+              icon: 'https://img.icons8.com/?size=100&id=30&format=png&color=7a7a7a',
+            },
             { label: 'Github', value: contact.github },
             { label: 'Phone', value: contact.phone },
           ]"
           :key="index"
           class="contact-card"
+          :style="{ transform: transProperties[index], transition: 'transform .4s ease' }"
           :class="{ active: activeContact === index }"
         >
           <div class="card-header" @click="toggleContact(index)">
@@ -31,27 +63,14 @@ const toggleContact = (key: number) => {
               <span>{{ item.label }}</span>
             </div>
             <div class="r-cnt">
-              <span class="arrow" :class="{ rotated: activeContact === index }">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path
-                    d="M3 4.5L6 7.5L9 4.5"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </span>
+              <button class="copy-btn">Copy</button>
             </div>
           </div>
-          <transition name="dropdown">
-            <div v-if="activeContact === index" class="card-body">
-              <span class="n">{{ item.value }}</span>
-              <div class="l-cnt">
-                <span>Copy</span>
-              </div>
-            </div>
-          </transition>
+
+          <div class="card-body">
+            <span class="n">{{ item.value }}</span>
+            <div class="l-cnt"></div>
+          </div>
         </li>
       </ul>
     </div>
@@ -77,13 +96,35 @@ const toggleContact = (key: number) => {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 0.2rem;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 2rem;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  margin-bottom: 0.3rem;
 }
 
 .header h1 {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-size: clamp(2rem, 4vw, 3rem);
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  font-size: 0.95rem;
 }
 
 .contact-cnt {
@@ -94,6 +135,8 @@ const toggleContact = (key: number) => {
   background: var(--global-component-bg);
   width: 100%;
   padding: 1rem;
+  box-shadow: var(--global-component-shadow);
+  border: 1px solid rgba(37, 99, 235, 0.06);
 }
 
 .ulist {
@@ -119,14 +162,14 @@ const toggleContact = (key: number) => {
 }
 
 .contact-card:hover {
-  border-color: rgba(102, 126, 234, 0.25);
+  border-color: rgba(37, 99, 235, 0.25);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.12);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
 }
 
 .contact-card.active {
-  border-color: rgba(102, 126, 234, 0.4);
-  box-shadow: 0 4px 24px rgba(102, 126, 234, 0.15);
+  border-color: rgba(37, 99, 235, 0.4);
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.15);
 }
 
 .card-header {
@@ -157,7 +200,7 @@ const toggleContact = (key: number) => {
 .arrow {
   display: flex;
   align-items: center;
-  color: #667eea;
+  color: #2563eb;
   transition: transform 0.3s ease;
   opacity: 0.6;
 }
@@ -173,13 +216,11 @@ const toggleContact = (key: number) => {
   align-items: center;
   width: 100%;
   padding-top: 0.75rem;
-  border-top: 1px solid rgba(102, 126, 234, 0.15);
+  border-top: 1px solid rgba(37, 99, 235, 0.15);
 }
 
 .n {
-  color: var(--global-txt-cl);
   font-size: 0.9rem;
-  opacity: 0.85;
   word-break: break-all;
 }
 
@@ -190,12 +231,18 @@ const toggleContact = (key: number) => {
   flex-shrink: 0;
 }
 
-.l-cnt span {
-  color: var(--global-txt-cl);
+.copy-btn {
+  color: var(--global-txt-secondary);
   font-size: 0.8rem;
-  opacity: 0.6;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
+  border: none;
+  border-radius: 1rem;
+  background-color: transparent;
+}
+
+.copy-btn:hover {
+  color: var(--global-txt-cl);
 }
 
 .l-cnt span:hover {

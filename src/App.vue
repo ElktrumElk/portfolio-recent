@@ -3,11 +3,16 @@ import HeaderComponent from './components/HeaderComponent.vue'
 import MenuComponent from './components/MenuComponent.vue'
 import { isMenu } from './context/general.ts'
 import { RouterView } from 'vue-router'
+import MouseDustComponent from './components/MouseDustComponent.vue'
+import RIppleWaterComponent from './components/RIppleWaterComponent.vue'
 </script>
 
 <template>
   <div class="overlay-hover-2"></div>
   <div class="overlay-hover"></div>
+  <MouseDustComponent />
+  <RIppleWaterComponent />
+
   <div class="app">
     <HeaderComponent />
     <RouterView v-slot="{ Component }">
@@ -22,7 +27,9 @@ import { RouterView } from 'vue-router'
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
 }
 
 .page-enter-from {
@@ -33,5 +40,13 @@ import { RouterView } from 'vue-router'
 .page-leave-to {
   opacity: 0;
   transform: translateY(-8px) scale(0.98);
+}
+
+.can {
+  inset: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid red;
 }
 </style>
