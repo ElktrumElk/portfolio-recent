@@ -122,7 +122,7 @@ function drawSpider() {
   ctx!.stroke()
   ctx!.shadowBlur = 0
 
-  ctx!.fillStyle = '#0055ff'
+  ctx!.fillStyle = 'black'
   ctx!.fillRect(-3, -3, 6, 6)
   ctx!.fillStyle = '#ffffff'
   ctx!.fillRect(-1, -1, 2, 2)

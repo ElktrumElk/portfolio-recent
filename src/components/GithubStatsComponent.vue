@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
 interface GithubData {
   publicRepos: number
@@ -13,6 +14,8 @@ interface GithubData {
 const data = ref<GithubData | null>(null)
 const error = ref(false)
 const username = 'ElktrumElk'
+
+const { el, isVisible } = useScrollReveal({ threshold: 0.1 })
 
 onMounted(async () => {
   try {
@@ -61,7 +64,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="github-section" id="github">
+  <section class="github-section" id="github" :ref="el" :class="{ 'is-visible': isVisible }">
     <div class="header">
       <div class="section-badge">Open Source</div>
       <h1>GitHub Statistics</h1>
@@ -126,11 +129,92 @@ onMounted(async () => {
   width: 100%;
   max-width: 1500px;
   align-self: center;
-  min-height: 100dvh;
+  min-height: auto;
   justify-content: center;
   padding-top: 5rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.github-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.github-section .header > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.github-section.is-visible .header > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.github-section.is-visible .header > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.github-section.is-visible .header > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.github-section .stat-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.github-section.is-visible .stat-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.3s;
+}
+.github-section.is-visible .stat-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.4s;
+}
+.github-section.is-visible .stat-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.5s;
+}
+.github-section.is-visible .stat-card:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.6s;
+}
+
+.github-section .gh-card,
+.github-section .languages {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.github-section.is-visible .gh-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+.github-section.is-visible .languages {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
 }
 
 .header {
@@ -159,7 +243,7 @@ onMounted(async () => {
 .header h1 {
   color: var(--global-txt-cl);
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: var(--title-txt);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

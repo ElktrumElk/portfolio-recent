@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el, isVisible } = useScrollReveal({ threshold: 0.05 })
+
 const projects = [
   {
     id: 1,
@@ -63,7 +67,8 @@ const projects = [
   {
     id: 7,
     name: 'Dating',
-    description: 'A Dating mobile application that pair you with your right partner with just a click.',
+    description:
+      'A Dating mobile application that pair you with your right partner with just a click.',
     repoLink: 'https://github.com/ElktrumElk/Reminder',
     previewLink: 'https://front-devs.vercel.app',
     imgLinke: '',
@@ -73,7 +78,7 @@ const projects = [
 </script>
 
 <template>
-  <section class="proj-section" id="project">
+  <section class="proj-section" id="project" :ref="el" :class="{ 'is-visible': isVisible }">
     <div class="header">
       <div class="section-badge">Portfolio</div>
       <h1 class="gradient-heading">Projects</h1>
@@ -177,14 +182,92 @@ const projects = [
   width: 95%;
   max-width: 1500px;
   align-self: center;
-  min-height: 100dvh;
+  min-height: auto;
   overflow: hidden;
   height: auto;
   flex: 0 0 auto;
-  padding-top: 10rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  padding-top: 5rem;
   padding-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.proj-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.proj-section .header > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.proj-section.is-visible .header > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.proj-section.is-visible .header > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.proj-section.is-visible .header > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.proj-section .project-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.proj-section.is-visible .project-card:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+.proj-section.is-visible .project-card:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+.proj-section.is-visible .project-card:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+.proj-section.is-visible .project-card:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+.proj-section.is-visible .project-card:nth-child(5) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
+}
+.proj-section.is-visible .project-card:nth-child(6) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+.proj-section.is-visible .project-card:nth-child(7) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.9s;
 }
 
 .proj-section .header {
@@ -213,7 +296,7 @@ const projects = [
 
 .gradient-heading {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: var(--title-txt);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

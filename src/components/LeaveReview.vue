@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { leaveReview } from '@/network/postReview'
 import { ref } from 'vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const name = ref('')
 const email = ref('')
 const content = ref('')
+
+const { el, isVisible } = useScrollReveal({ threshold: 0.15 })
 
 const handleReviewSubmint = (e: SubmitEvent) => {
   e.preventDefault()
@@ -14,7 +17,7 @@ const handleReviewSubmint = (e: SubmitEvent) => {
     email: email.value,
     content: content.value,
   })
-  
+
   name.value = ''
   email.value = ''
   content.value = ''
@@ -22,7 +25,7 @@ const handleReviewSubmint = (e: SubmitEvent) => {
 </script>
 
 <template>
-  <section class="leave-review" id="review">
+  <section class="leave-review" id="review" :ref="el" :class="{ 'is-visible': isVisible }">
     <div class="header">
       <div class="section-badge">Feedback</div>
       <h1>Review</h1>
@@ -59,8 +62,54 @@ const handleReviewSubmint = (e: SubmitEvent) => {
   width: 100%;
   max-width: 1500px;
   align-self: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.leave-review.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.leave-review .header > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.leave-review.is-visible .header > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.leave-review.is-visible .header > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.leave-review.is-visible .header > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.leave-review form {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.leave-review.is-visible form {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
 }
 
 .header {
@@ -88,7 +137,7 @@ const handleReviewSubmint = (e: SubmitEvent) => {
 
 .header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: var(--title-txt);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

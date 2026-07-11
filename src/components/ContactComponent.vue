@@ -1,41 +1,27 @@
 <script lang="ts" setup>
 import { contact } from '@/data/conatcts'
 import { useRerender } from '@/modules/render-vue'
-import { onMounted } from 'vue'
+import { computed } from 'vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const [activeContact, setActiveContact] = useRerender<number | null>(null)
 
-// contact toggling
 const toggleContact = (key: number) => {
   setActiveContact(activeContact.value === key ? null : key)
 }
 
-// raw transition values
-const [transition, setTransition] = useRerender<number[]>([-90, 100, -100])
+const { el, isVisible } = useScrollReveal({ threshold: 0.15, repeat: false })
 
-// initial transitions property value
-const [transProperties, setTransProperties] = useRerender([
-  `translateX(${transition.value[0]}%)`,
-  `translateY(${transition.value[1]}%)`,
-  `translateY(${transition.value[2]}%)`,
-])
-
-onMounted(async () => {
-  setTimeout(() => {
-    requestAnimationFrame(() => {
-      setTransition([0, 0, 0])
-      setTransProperties([
-        `translateX(${transition.value[0]}%)`,
-        `translateY(${transition.value[1]}%)`,
-        `translateY(${transition.value[2]}%)`,
-      ])
-    })
-  }, 1)
+const transProperties = computed(() => {
+  if (isVisible.value) {
+    return ['translateX(0%)', 'translateY(0%)', 'translateY(0%)']
+  }
+  return ['translateX(-90%)', 'translateY(100%)', 'translateY(-100%)']
 })
 </script>
 
 <template>
-  <section class="contact-section" id="contact">
+  <section class="contact-section" id="contact" :ref="el" :class="{ 'is-visible': isVisible }">
     <div class="header">
       <div class="section-badge">Connect</div>
       <h1>Get In Touch</h1>
@@ -85,10 +71,33 @@ onMounted(async () => {
   width: 100%;
   max-width: 1500px;
   align-self: center;
-  min-height: 100%;
+  min-height: auto;
   justify-content: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  padding: 10rem 1rem;
+}
+
+.contact-section .header > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.contact-section.is-visible .header > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.contact-section.is-visible .header > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.contact-section.is-visible .header > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
 }
 
 .header {
@@ -117,7 +126,7 @@ onMounted(async () => {
 
 .header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: var(--title-txt);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -170,6 +179,44 @@ onMounted(async () => {
 .contact-card.active {
   border-color: rgba(37, 99, 235, 0.4);
   box-shadow: 0 4px 24px rgba(37, 99, 235, 0.15);
+}
+
+.contact-card:nth-child(2) {
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.12);
+}
+
+.contact-section.is-visible .contact-card {
+  animation: float 5s ease-in-out infinite;
+}
+
+.contact-section.is-visible .contact-card:nth-child(1) {
+  animation-delay: 0.6s;
+}
+.contact-section.is-visible .contact-card:nth-child(2) {
+  animation-delay: 0.8s;
+}
+.contact-section.is-visible .contact-card:nth-child(3) {
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.contact-card:nth-child(2):hover {
+  transform: scale(1.2);
+}
+
+.contact-section.is-visible .contact-card:nth-child(2):hover {
+  animation: none;
+  transform: scale(1.2);
 }
 
 .card-header {

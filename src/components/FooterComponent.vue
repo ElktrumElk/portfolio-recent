@@ -1,5 +1,14 @@
+<script setup lang="ts">
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el, isVisible } = useScrollReveal({ threshold: 0.1 })
+</script>
+
 <template>
-  <footer>
+  <footer
+    :ref="el"
+    :class="{ 'is-visible': isVisible }"
+  >
     <div class="footer-divider"></div>
     <div class="div">
       <ul>
@@ -35,10 +44,26 @@ footer {
   gap: 2rem;
   padding-bottom: 3rem;
   max-width: 1500px;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+footer.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+footer.is-visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+footer.is-visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+footer.is-visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
 
 .footer-divider {
   width: 80%;

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useRerender } from '@/modules/render-vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const [activeSkill, setActiveSkill] = useRerender<number>(0)
 const [isOpen, setIsOpen] = useRerender<boolean>(false)
 const [scale, setScale] = useRerender(0)
+
+const { el, isVisible } = useScrollReveal({ threshold: 0.08 })
 
 const toggleSkill = (key: number) => {
   const willOpen = activeSkill.value !== key || !isOpen.value
@@ -18,7 +21,12 @@ const toggleSkill = (key: number) => {
 </script>
 
 <template>
-  <section class="skill-section" id="skill">
+  <section
+    class="skill-section"
+    id="skill"
+    :ref="el"
+    :class="{ 'is-visible': isVisible }"
+  >
     <div class="header">
       <div class="section-badge">Expertise</div>
       <h1 class="gradient-heading">Skills &amp; Tools</h1>
@@ -279,16 +287,72 @@ const toggleSkill = (key: number) => {
   display: flex;
   width: 95%;
   flex-direction: column;
-  margin-bottom: 4rem;
+  margin-bottom: 0rem;
   max-width: 1500px;
   align-self: center;
   gap: 3rem;
   min-height: 100%;
   justify-content: center;
   flex: 0 0 auto;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+.skill-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-section .header > *,
+.skill-section .tech-skills,
+.skill-section .soft-skills {
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.skill-section .header > *:nth-child(1) { transform: translateY(16px); }
+.skill-section .header > *:nth-child(2) { transform: translateY(16px); }
+.skill-section .header > *:nth-child(3) { transform: translateY(16px); }
+.skill-section .tech-skills { transform: translateX(-30px); }
+.skill-section .soft-skills { transform: translateX(30px); }
+
+.skill-section.is-visible .header > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.skill-section.is-visible .header > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.skill-section.is-visible .header > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+.skill-section.is-visible .tech-skills {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
+.skill-section.is-visible .soft-skills {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.4s;
+}
+
+.skill-section .skill-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.97);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-section.is-visible .skill-card:nth-child(1) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.4s; }
+.skill-section.is-visible .skill-card:nth-child(2) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.5s; }
+.skill-section.is-visible .skill-card:nth-child(3) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.6s; }
+.skill-section.is-visible .skill-card:nth-child(4) { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.7s; }
 
 .skill-section .header {
   width: 100%;
@@ -318,7 +382,7 @@ const toggleSkill = (key: number) => {
 
 .gradient-heading {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: var(--title-txt);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -361,18 +425,19 @@ const toggleSkill = (key: number) => {
   width: 100%;
   padding: 1.5rem;
   border-radius: 1.25rem;
-  background: var(--global-component-bg);
+  background: transparent;
   gap: 1.25rem;
   overflow: hidden;
   box-shadow: var(--global-component-shadow);
   border: 1px solid rgba(37, 99, 235, 0.06);
+  backdrop-filter: blur(1px);
 }
 
 .tech-skills h1,
 .soft-skills h1 {
   color: var(--global-txt-cl);
   font-size: 130%;
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: linear-gradient(135deg, var(--title-txt), #d9d9d9);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { comments, Content } from '@/data/comments'
 import { onMounted } from 'vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const obj = new Content()
+const { el, isVisible } = useScrollReveal({ threshold: 0.1 })
+
 onMounted(() => {
   obj.loadComment()
 })
 </script>
 
 <template>
-  <section class="comment-sec" id="comments">
+  <section class="comment-sec" id="comments" :ref="el" :class="{ 'is-visible': isVisible }">
     <div class="header">
       <div class="section-badge">Testimonials</div>
       <h1>What people say</h1>
@@ -63,8 +66,55 @@ onMounted(() => {
   min-height: 100% !important;
   justify-content: center;
   flex: 0 0 auto;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+
+}
+
+.comment-sec.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.comment-sec .header > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.comment-sec.is-visible .header > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+.comment-sec.is-visible .header > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.comment-sec.is-visible .header > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.comment-sec .horizontal-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.comment-sec.is-visible .horizontal-scroll {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
 }
 
 .header {
@@ -93,7 +143,7 @@ onMounted(() => {
 
 .header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: var(--title-txt);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

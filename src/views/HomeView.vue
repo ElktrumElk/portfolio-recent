@@ -45,14 +45,13 @@ onMounted(() => {
   display: flex;
   height: auto;
   flex-direction: column;
-  gap: 10rem;
+  gap: 4rem;
   scrollbar-color: rgba(128, 128, 128, 0.317);
   scrollbar-width: 1px;
   align-items: center;
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 @media (max-width: 600px) {
   .home {

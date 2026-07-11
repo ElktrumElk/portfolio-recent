@@ -1,28 +1,15 @@
 <script lang="ts" setup>
-import { useRerender } from '@/modules/render-vue'
-import { onMounted } from 'vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
-const [scale, setScale] = useRerender(0.8)
-const [opacity, setOpacity] = useRerender(0)
-
-onMounted(() => {
-  const id = setTimeout(() => {
-    setScale(1)
-    setOpacity(1)
-  }, 100)
-  return () => clearTimeout(id)
-})
+const { el, isVisible } = useScrollReveal({ threshold: 0.1 })
 </script>
 
 <template>
   <section
     class="about-section"
     id="about"
-    :style="{
-      opacity: `${opacity}`,
-      transform: `scale(${scale})`,
-      transition: 'opacity 1s ease, transform 1s ease',
-    }"
+    :ref="el"
+    :class="{ 'is-visible': isVisible }"
   >
     <div class="about-cnt">
       <div class="about-info">
@@ -89,12 +76,86 @@ onMounted(() => {
   display: flex;
   width: 100%;
   gap: 0.5rem;
-  min-height: 100dvh;
+  min-height: auto;
   flex: 0 0 auto;
   align-items: center;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
   justify-content: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-section .section-badge,
+.about-section .greetings,
+.about-section .description,
+.about-section .stat,
+.about-section .button-cnt {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.about-section.is-visible .section-badge {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.about-section.is-visible .greetings {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.about-section.is-visible .description:nth-of-type(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.about-section.is-visible .description:nth-of-type(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+.about-section.is-visible .stat:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.4s;
+}
+
+.about-section.is-visible .stat:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.5s;
+}
+
+.about-section.is-visible .stat:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.6s;
+}
+
+.about-section.is-visible .stat:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.7s;
+}
+
+.about-section.is-visible .button-cnt {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.7s;
+}
+
+.about-section .stat {
+  transform: translateY(24px) scale(0.92);
 }
 
 .about-cnt {
@@ -137,7 +198,7 @@ onMounted(() => {
   font-family: sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.2;
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: linear-gradient(45deg, var(--title-txt), #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

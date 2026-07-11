@@ -1,7 +1,7 @@
 :root {
   --bg-gen-cl: #ffffff;
   --bg-gen-cl-a: #ffffff;
-
+  --title-txt: rgb(0, 0, 0);
   --bg-cl: linear-gradient(to right, transparent 5%, #dce3ed 6% 9%, transparent 10%);
   --bg-cl-a: repeating-linear-gradient(
     to bottom,
@@ -22,13 +22,15 @@
 }
 
 body.dark {
-  --bg-gen-cl: #0a0f1a;
+  --bg-gen-cl: #000000;
+  --title-txt: rgb(255, 255, 255);
+
   --bg-gen-cl-a: #0a0f1a;
   --bg-cl: linear-gradient(to right, #0a0f1a 5%, #111827 6% 9%, #0a0f1a 10%);
   --bg-cl-a: repeating-linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0) 5%,
-    #111827 6% 7%,
+    #070708 6% 7%,
     rgba(0, 0, 0, 0) 8%
   );
   --global-txt-cl: #f1f5f9;
@@ -36,13 +38,15 @@ body.dark {
   --global-component-bg: #1e293b;
   --global-component-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.25);
   --global-section-component-bg: #0f172a;
-  --over-cl: rgb(3, 146, 199) 25%;
+  --over-cl: rgb(0, 0, 0) 25%;
   --over-cl-b: black;
 }
 
 body.light {
   --bg-gen-cl: #ffffff;
   --bg-gen-cl-a: #ffffff;
+  --title-txt: rgb(5, 5, 5);
+
   --bg-cl: linear-gradient(to right, transparent 5%, #dce3ed 6% 9%, transparent 10%);
   --bg-cl-a: repeating-linear-gradient(
     to bottom,
@@ -63,13 +67,15 @@ body.light {
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-cl: linear-gradient(to right, #0a0f1a 5%, #111827 6% 9%, #0a0f1a 10%);
+    --title-txt: rgb(255, 255, 255);
+    --bg-gen-cl: #000000;
     --bg-cl-a: repeating-linear-gradient(
       to bottom,
       rgba(0, 0, 0, 0) 5%,
-      #111827 6% 7%,
+      #000000 6% 7%,
       rgba(0, 0, 0, 0) 8%
     );
-    --bg-gen-cl: #0a0f1a;
+
     --global-txt-cl: #f1f5f9;
     --global-txt-secondary: #94a3b8;
     --global-component-bg: #1e293b;

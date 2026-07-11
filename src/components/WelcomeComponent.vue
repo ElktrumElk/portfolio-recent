@@ -1,27 +1,30 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
-const isVisible = ref(false)
+const entranceDone = ref(false)
+const { el, isVisible } = useScrollReveal({ threshold: 0.3, repeat: true })
 
 onMounted(() => {
   const timer = setTimeout(() => {
-    isVisible.value = true
+    entranceDone.value = true
   }, 200)
   return () => clearTimeout(timer)
 })
 </script>
 
 <template>
-  <section class="welcome" id="welcome">
+  <section
+    class="welcome"
+    id="welcome"
+    :ref="el"
+    :class="{ 'is-visible': isVisible, 'entrance-done': entranceDone }"
+  >
     <div class="welcome-bg">
-      <span class="blob blob-1"></span>
-      <span class="blob blob-2"></span>
-      <span class="blob blob-3"></span>
-      <span class="blob blob-4"></span>
       <div class="grid-pattern"></div>
     </div>
 
-    <div class="welcome-content" :class="{ visible: isVisible }">
+    <div class="welcome-content" :class="{ visible: entranceDone }">
       <div class="badge">
         <span class="badge-dot"></span>
         <span>Available for work</span>
@@ -29,7 +32,7 @@ onMounted(() => {
       <p class="greeting">Hello, I'm</p>
       <h1 class="name">Elkanah Cole</h1>
       <p class="title">Full-Stack Developer &amp; UI Engineer</p>
-      <div class="cta-group">
+      <div class="cta-group"> 
         <RouterLink to="/projects" class="btn btn-primary">
           <span>View My Work</span>
           <svg
@@ -68,8 +71,13 @@ onMounted(() => {
   justify-content: center;
   overflow: hidden;
   padding-top: 5rem;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  opacity: 1;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.welcome:not(.is-visible) {
+  opacity: 0.4;
+  transform: scale(0.97);
 }
 
 .welcome-bg {
@@ -97,7 +105,7 @@ onMounted(() => {
 .blob-1 {
   width: 500px;
   height: 500px;
-  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  background: linear-gradient(135deg, #1e3a5f, #2564eb42);
   top: -15%;
   left: -10%;
   animation: float 20s ease-in-out infinite;
@@ -106,7 +114,7 @@ onMounted(() => {
 .blob-2 {
   width: 400px;
   height: 400px;
-  background: linear-gradient(135deg, #0d9488, #0891b2);
+  background: linear-gradient(135deg, #0d9488, #0890b247);
   bottom: -10%;
   right: -8%;
   animation: float 25s ease-in-out infinite reverse;
@@ -210,7 +218,7 @@ onMounted(() => {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #1e3a5f, #2563eb, #0d9488);
+  background: linear-gradient(135deg, var(--title-txt) 40%, #ffffff 50%, var(--title-txt) 60%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
